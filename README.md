@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # StudyFlow
 
 Application de productivité étudiante avec timer, suivi de sessions et intelligence adaptative.
@@ -51,3 +52,7 @@ L'app sera disponible sur **http://localhost:5173**
 - **Frontend** : React 18 + TypeScript + Vite + Zustand + Recharts
 - **Backend** : Node.js + Express + TypeScript
 - **Base de données** : PostgreSQL + Redis (via Docker)
+=======
+# Studyflow
+studyflow is a app that  helps student during sessions studies and make them more concentate  .
+>>>>>>> aeac52f1c55a338a2e1f33cfeb27c2b72eff9660
