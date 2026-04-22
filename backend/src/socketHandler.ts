@@ -61,9 +61,11 @@ function participantList(room: Room) {
   }));
 }
 
+const JWT_SECRET = process.env.JWT_SECRET || 'studyflow_dev_fallback_secret';
+
 function verifyToken(token: string): { userId: string; name?: string } | null {
   try {
-    return jwt.verify(token, process.env.JWT_SECRET || 'secret') as { userId: string };
+    return jwt.verify(token, JWT_SECRET) as { userId: string };
   } catch {
     return null;
   }

@@ -1,8 +1,11 @@
 import { Router, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 import { OAuth2Client } from 'google-auth-library';
 import { query } from '../db/pool';
+
+const JWT_SECRET = process.env.JWT_SECRET || 'studyflow_dev_fallback_secret';
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
@@ -37,7 +40,7 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
     );
     const user = result.rows[0];
     await query('INSERT INTO user_preferences (user_id) VALUES ($1)', [user.id]);
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET || 'secret', { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '7d' });
     res.status(201).json({ token, user });
   } catch (err) {
     console.error(err);
@@ -54,7 +57,7 @@ router.post('/login', async (req: Request, res: Response): Promise<void> => {
     const user = result.rows[0];
     const valid = await bcrypt.compare(password, user.password_hash);
     if (!valid) { res.status(401).json({ error: 'Invalid credentials' }); return; }
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET || 'secret', { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '7d' });
     res.json({ token, user: { id: user.id, email: user.email, name: user.name } });
   } catch (err) {
     console.error(err);
@@ -79,16 +82,17 @@ router.post('/google', async (req: Request, res: Response): Promise<void> => {
     if (result.rows.length === 0) {
       const displayName = name || email.split('@')[0];
       const username = await generateUsername(displayName);
+      const randomHash = await bcrypt.hash(crypto.randomBytes(32).toString('hex'), 10);
       result = await query(
         `INSERT INTO users (email, name, username, oauth_provider, oauth_id, password_hash)
-         VALUES ($1, $2, $3, 'google', $4, '') RETURNING id, email, name, username`,
-        [email, displayName, username, googleId]
+         VALUES ($1, $2, $3, 'google', $4, $5) RETURNING id, email, name, username`,
+        [email, displayName, username, googleId, randomHash]
       );
       await query('INSERT INTO user_preferences (user_id) VALUES ($1)', [result.rows[0].id]);
     }
 
     const user = result.rows[0];
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET || 'secret', { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET, { expiresIn: '7d' });
     res.json({ token, user: { id: user.id, email: user.email, name: user.name } });
   } catch (err) {
     console.error('Google auth error:', err);
@@ -100,8 +104,11 @@ router.get('/me', async (req: Request, res: Response): Promise<void> => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) { res.status(401).json({ error: 'No token' }); return; }
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secret') as { userId: string };
-    const result = await query('SELECT id, email, name, created_at FROM users WHERE id = $1', [decoded.userId]);
+    const decoded = jwt.verify(token, JWT_SECRET) as { userId: string };
+    const result = await query(
+      'SELECT id, email, name, username, avatar_url, onboarding_done, points, created_at FROM users WHERE id = $1',
+      [decoded.userId]
+    );
     if (result.rows.length === 0) { res.status(404).json({ error: 'User not found' }); return; }
     res.json({ user: result.rows[0] });
   } catch {

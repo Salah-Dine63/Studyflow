@@ -12,6 +12,15 @@ import { initSocket } from './socketHandler';
 
 dotenv.config();
 
+// Startup checks
+if (!process.env.JWT_SECRET && process.env.NODE_ENV === 'production') {
+  console.error('❌ FATAL: JWT_SECRET environment variable is not set in production!');
+  process.exit(1);
+}
+if (!process.env.JWT_SECRET) {
+  console.warn('⚠️  JWT_SECRET not set — using insecure fallback (dev only)');
+}
+
 // Add missing columns safely on startup
 import { pool } from './db/pool';
 pool.query(`
