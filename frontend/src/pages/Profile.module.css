@@ -1,0 +1,311 @@
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: var(--text3);
+}
+
+/* Hero card */
+.heroCard {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.avatarWrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.avatarImg {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #534AB7;
+}
+
+.avatarFallback {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #534AB7, #7c6af7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  border: 3px solid #534AB7;
+}
+
+.avatarOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.heroInfo {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.heroName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.heroSchool {
+  font-size: 0.9rem;
+  color: var(--text2);
+  margin: 0;
+}
+
+.heroUsername {
+  font-size: 0.85rem;
+  color: #534AB7;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  margin: 0;
+}
+
+.heroEmail {
+  font-size: 0.8rem;
+  color: var(--text3);
+  margin: 0;
+}
+
+.nameInput {
+  font-size: 1.3rem;
+  font-weight: 700;
+  background: var(--bg);
+  border: 1px solid #534AB7;
+  border-radius: 8px;
+  color: var(--text);
+  padding: 0.4rem 0.7rem;
+  outline: none;
+  width: 100%;
+}
+
+.schoolInput {
+  font-size: 0.9rem;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  color: var(--text2);
+  padding: 0.35rem 0.6rem;
+  outline: none;
+  width: 100%;
+}
+
+.heroActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.btnEdit {
+  background: #534AB7;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btnEdit:hover { background: #6b5fd0; }
+
+.btnSave {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btnSave:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.btnCancel {
+  background: transparent;
+  color: var(--text3);
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.savedBadge {
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Sections */
+.section {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+  margin: 0 0 1rem;
+}
+
+/* Bio */
+.bioText {
+  color: var(--text2);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bioInput {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  color: var(--text2);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  padding: 0.75rem 1rem;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+.bioInput:focus { border-color: #534AB7; }
+
+/* Level */
+.levelCard {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.levelBadge {
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pointsDisplay {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+}
+
+.pointsNum {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.pointsLabel {
+  font-size: 0.85rem;
+  color: var(--text3);
+}
+
+.progressWrap {
+  flex: 1;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.progressTrack {
+  height: 6px;
+  background: var(--surface3);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+.progressText {
+  font-size: 0.75rem;
+  color: var(--text3);
+}
+
+/* Stats grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 680px) {
+  .page      { padding: 0; }
+  .heroCard  { flex-direction: column; align-items: center; text-align: center; }
+  .heroInfo  { align-items: center; }
+  .heroActions { align-items: center; flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .levelCard { flex-direction: column; align-items: flex-start; }
+}
+
+.statCard {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.statVal {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--text3);
+  margin-top: 0.2rem;
+}

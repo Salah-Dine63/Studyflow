@@ -1,0 +1,95 @@
+.page { display: flex; flex-direction: column; gap: 1.5rem; animation: fadeUp 0.4s ease both; }
+.loading { padding: 2rem; color: var(--text2); font-family: var(--font-mono); }
+
+.header { display: flex; align-items: center; gap: 14px; }
+.title { font-family: var(--font-display); font-size: 32px; font-weight: 400; letter-spacing: -0.5px; }
+.badge {
+  font-size: 12px; font-family: var(--font-mono);
+  background: var(--surface2); color: var(--text3);
+  border: 1px solid var(--border2);
+  padding: 4px 12px; border-radius: 20px;
+}
+
+.emptyState {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 3rem;
+  text-align: center;
+  max-width: 480px;
+}
+.emptyIcon { font-size: 32px; margin-bottom: 1rem; color: var(--accent); }
+.emptyTitle { font-size: 16px; font-weight: 500; margin-bottom: 10px; }
+.emptySub { font-size: 14px; color: var(--text2); line-height: 1.8; margin-bottom: 2rem; }
+
+.progressWrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.progressBar {
+  width: 220px; height: 5px;
+  background: var(--surface2); border-radius: 99px; overflow: hidden;
+}
+.progressFill { height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.5s ease; box-shadow: 0 0 10px rgba(124,106,247,0.5); }
+.progressLabel { font-size: 12px; color: var(--text3); font-family: var(--font-mono); }
+
+.insightsList { display: flex; flex-direction: column; gap: 12px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+  border-left-width: 3px;
+}
+.card:hover { transform: translateX(4px); }
+
+.cardTop { display: flex; align-items: flex-start; gap: 14px; }
+
+.cardIcon {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+  border: 1px solid transparent;
+}
+
+.cardMeta { flex: 1; }
+.cardTitle { font-size: 16px; font-weight: 500; margin-bottom: 8px; color: var(--text); }
+
+.confidence { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text3); font-family: var(--font-mono); }
+.confBar { flex: 1; height: 3px; max-width: 100px; background: var(--surface2); border-radius: 99px; overflow: hidden; }
+.confFill { height: 100%; border-radius: 99px; }
+
+.cardDesc { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+.action {
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.actionLabel {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  opacity: 0.6; font-family: var(--font-mono);
+}
+.actionText { font-size: 13px; font-weight: 500; }
+
+.footer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  border-left: 3px solid var(--accent);
+}
+.footerTitle { font-size: 13px; font-weight: 600; color: var(--accent2); margin-bottom: 8px; font-family: var(--font-mono); }
+.footerText { font-size: 13px; color: var(--text2); line-height: 1.8; }
+
+@media (max-width: 680px) {
+  .header { flex-direction: column; align-items: flex-start; }
+  .title  { font-size: 24px; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

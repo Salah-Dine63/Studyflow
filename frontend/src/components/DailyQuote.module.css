@@ -1,0 +1,41 @@
+.wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, rgba(83,74,183,0.08), rgba(16,185,129,0.05));
+  border: 1px solid rgba(83,74,183,0.2);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.icon {
+  color: #534AB7;
+  font-size: 14px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.text {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+.author {
+  font-size: 11px;
+  color: #534AB7;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.3px;
+}

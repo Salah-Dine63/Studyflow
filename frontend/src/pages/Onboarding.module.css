@@ -1,0 +1,336 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(124,106,247,0.06) 0%, transparent 65%);
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 16px 64px rgba(0,0,0,0.5);
+  position: relative;
+  z-index: 1;
+}
+
+/* Progress bar */
+.progress {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  opacity: 0.35;
+  transition: opacity 0.3s;
+}
+.progressActive { opacity: 1; }
+
+.progressDot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600;
+  color: var(--text2);
+  font-family: var(--font-mono);
+  transition: all 0.3s;
+}
+.progressActive .progressDot {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  box-shadow: 0 0 16px rgba(124,106,247,0.4);
+}
+
+.progressLabel {
+  font-size: 11px;
+  color: var(--text3);
+  font-family: var(--font-mono);
+  letter-spacing: 0.3px;
+}
+.progressActive .progressLabel { color: var(--accent2); }
+
+.progressBar {
+  height: 3px;
+  background: var(--surface2);
+  border-radius: 99px;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+}
+.progressFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 10px rgba(124,106,247,0.5);
+}
+
+/* Step content */
+.content {
+  animation: slideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.stepContent { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.title {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight: 400;
+  color: var(--text); letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+.sub { font-size: 14px; color: var(--text2); margin-top: -1rem; line-height: 1.6; }
+
+.fieldGroup { display: flex; flex-direction: column; gap: 10px; }
+.label { font-size: 13px; font-weight: 500; color: var(--text2); font-family: var(--font-mono); }
+
+.input {
+  background: var(--surface) !important;
+  border: 1px solid var(--border2) !important;
+  color: var(--text) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+.input:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-bg) !important;
+}
+
+/* Chips */
+.chipGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 8px 16px;
+  border: 1px solid var(--border2);
+  border-radius: 99px;
+  background: var(--surface);
+  color: var(--text2);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-body);
+}
+.chip:hover { border-color: var(--border3); color: var(--text); }
+.chipActive {
+  background: var(--accent-bg);
+  border-color: var(--accent);
+  color: var(--accent2);
+  font-weight: 500;
+  box-shadow: 0 0 12px rgba(124,106,247,0.15);
+}
+
+/* Card chips (bigger, for style options) */
+.chipCard {
+  flex: 1;
+  min-width: 120px;
+  padding: 14px 16px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+.chipCard:hover { border-color: var(--border3); background: var(--surface2); }
+.chipCardActive {
+  background: var(--accent-bg);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 16px rgba(124,106,247,0.15);
+}
+.chipCardLabel {
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  display: block;
+}
+.chipCardActive .chipCardLabel { color: var(--accent2); }
+.chipCardSub {
+  font-size: 11px; color: var(--text3);
+  display: block;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.btnBack {
+  padding: 11px 20px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-md);
+  background: none; color: var(--text2);
+  font-size: 14px; cursor: pointer;
+  transition: all 0.15s;
+}
+.btnBack:hover { background: var(--surface2); color: var(--text); }
+
+.btnNext {
+  padding: 11px 28px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--accent); color: #fff;
+  font-size: 14px; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(124,106,247,0.35);
+  min-width: 180px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btnNext:hover:not(:disabled) { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 6px 28px rgba(124,106,247,0.45); }
+.btnNext:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+.loadingText { display: flex; align-items: center; gap: 8px; }
+.spinner {
+  width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error {
+  font-size: 13px; color: var(--red);
+  background: var(--red-bg);
+  border: 1px solid var(--red-border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  margin-top: 1rem;
+}
+
+/* ── RESULT SCREEN ── */
+.resultCard {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  animation: fadeUp 0.5s ease both;
+}
+
+.resultGlow {
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.resultHeader { text-align: center; margin-bottom: 2rem; }
+.resultBadge {
+  display: inline-block;
+  font-size: 12px; font-weight: 600;
+  padding: 5px 16px; border-radius: 99px;
+  font-family: var(--font-mono);
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+.resultTitle {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 400;
+  color: var(--text); margin-bottom: 10px;
+}
+.resultMotivation { font-size: 14px; color: var(--text2); line-height: 1.7; max-width: 420px; margin: 0 auto; }
+
+.recommendBox {
+  border: 1px solid;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.recommendLabel { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); font-family: var(--font-mono); margin-bottom: 8px; }
+.recommendTech { font-family: var(--font-display); font-size: 28px; margin-bottom: 4px; }
+.recommendDuration { font-size: 13px; color: var(--text2); font-family: var(--font-mono); }
+
+.resultGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+
+.resultSection {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+.resultSectionTitle { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); font-family: var(--font-mono); margin-bottom: 10px; }
+
+.resultItem { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); margin-bottom: 6px; }
+.dotGreen { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.dotAmber { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+
+.tipsSection {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.tipItem { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; color: var(--text2); margin-bottom: 10px; line-height: 1.6; }
+.tipItem:last-child { margin-bottom: 0; }
+.tipNum {
+  width: 22px; height: 22px; border-radius: 6px;
+  background: var(--accent-bg); color: var(--accent2);
+  border: 1px solid var(--accent-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600; font-family: var(--font-mono);
+  flex-shrink: 0; margin-top: 1px;
+}
+
+.btnStart {
+  width: 100%;
+  padding: 14px;
+  border: none; border-radius: var(--radius-md);
+  color: #fff; font-size: 15px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+  letter-spacing: 0.3px;
+}
+.btnStart:hover { opacity: 0.88; transform: translateY(-1px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,49 @@
+.wrap {
+  overflow-x: auto;
+}
+
+.grid {
+  display: flex;
+  gap: 3px;
+}
+
+.week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  cursor: default;
+  transition: background 0.2s;
+}
+
+.cell:hover {
+  opacity: 0.8;
+  transform: scale(1.3);
+}
+
+.months {
+  display: flex;
+  margin-bottom: 4px;
+  font-size: 10px;
+  color: #6b7280;
+}
+
+.monthLabel {
+  padding-left: 2px;
+  font-family: monospace;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 8px;
+  justify-content: flex-end;
+}
